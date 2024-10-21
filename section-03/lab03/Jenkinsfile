@@ -25,7 +25,8 @@ pipeline {
           notifySlack("Started", "#00FF00")
         }        
         echo "Git clone from gitlab repository"
-        git branch: 'dev', url: 'https://gitlab.com/nexweb/jenkins-handson.git'
+        git branch: 'dev', url: 'https://gitlab.com/nexweb/jenkins-handson.git',
+	credentialsId: 'github-access-token'
       }
     }
 
@@ -80,7 +81,7 @@ pipeline {
         echo "Building and push the image..."
         withCredentials ([
           usernamePassword(
-            credentialsId: 'docker-credentials',
+            credentialsId: 'docker-leekangyong',
             usernameVariable: 'USER', 
             passwordVariable: 'PASSWORD'
           )
